@@ -3,58 +3,147 @@ import {
   Box,
   Container,
   Grid,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
   Typography,
-  Collapse,
   useTheme,
   useMediaQuery,
-  Drawer,
-  IconButton,
   Paper,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  List,
+  ListItemButton,
+  ListItemText,
+  Collapse,
 } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const subjects = {
-  Chemistry: ['Organic Chemistry', 'Inorganic Chemistry', 'Physical Chemistry'],
-  Physics: ['Mechanics', 'Electromagnetism', 'Thermodynamics'],
-  Mathematics: ['Calculus', 'Algebra', 'Geometry'],
+const classData = {
+  11: {
+    Physics: {
+      'Physical World and Measurement': ['Physics and Mathematics', 'Units and Measurements'],
+      'Kinematics': ['Motion in a Straight Line', 'Motion in a Plane'],
+      'Laws of Motion': ['Newton\'s Laws', 'Friction'],
+      'Work, Energy and Power': ['Work', 'Energy', 'Power', 'Collisions'],
+      'Motion of System of Particles': ['Center of Mass', 'Momentum', 'Rigid Body Dynamics']
+    },
+    Chemistry: {
+      'Physical Chemistry': ['Some Basic Concepts', 'States of Matter', 'Atomic Structure'],
+      'Organic Chemistry': ['Basic Organic Chemistry', 'Hydrocarbons', 'Environmental Chemistry'],
+      'Inorganic Chemistry': ['Classification of Elements', 'Chemical Bonding', 'Redox Reactions']
+    },
+    Mathematics: {
+      'Sets and Functions': ['Sets', 'Relations and Functions', 'Trigonometric Functions'],
+      'Algebra': ['Complex Numbers', 'Linear Inequalities', 'Sequences and Series'],
+      'Coordinate Geometry': ['Straight Lines', 'Conic Sections', 'Introduction to 3D']
+    }
+  },
+  12: {
+    Physics: {
+      'Electrostatics': ['Electric Charges', 'Electric Field', 'Electric Potential'],
+      'Current Electricity': ['Electric Current', 'Ohm\'s Law', 'Electrical Devices'],
+      'Magnetism': ['Magnetic Field', 'Electromagnetic Induction', 'AC Circuits'],
+      'Optics': ['Ray Optics', 'Wave Optics', 'Optical Instruments']
+    },
+    Chemistry: {
+      'Physical Chemistry': ['Solutions', 'Electrochemistry', 'Chemical Kinetics'],
+      'Organic Chemistry': ['Alcohols and Ethers', 'Aldehydes and Ketones', 'Biomolecules'],
+      'Inorganic Chemistry': ['d and f Block', 'Coordination Compounds', 'Metallurgy']
+    },
+    Mathematics: {
+      'Calculus': ['Continuity and Differentiability', 'Applications of Derivatives', 'Integrals'],
+      'Algebra': ['Matrices', 'Determinants', 'Vector Algebra'],
+      'Probability': ['Probability Concepts', 'Random Variables', 'Bernoulli Trials']
+    }
+  }
 };
 
 const resourceContent = {
-  'Organic Chemistry': {
-    title: 'Organic Chemistry',
-    description: 'Study materials for Organic Chemistry',
+  'Electric Charges': {
+    title: 'Electric Charges and Fields',
+    description: 'Study materials covering fundamental concepts of electric charges, Coulomb\'s law, and electric fields.',
     resources: [
       {
-        title: 'Introduction to Organic Chemistry',
-        driveLink: 'https://drive.google.com/...',
+        title: 'Introduction to Electric Charges',
+        description: 'Basic concepts and properties of electric charges',
+        driveLink: 'https://drive.google.com/placeholder-1',
         image: '/path-to-image',
       },
       {
-        title: 'Hydrocarbon Compounds',
-        driveLink: 'https://drive.google.com/...',
+        title: 'Coulomb\'s Law and Applications',
+        description: 'Detailed explanation of Coulomb\'s law with solved examples',
+        driveLink: 'https://drive.google.com/placeholder-2',
         image: '/path-to-image',
       },
     ],
   },
-  // Add more chapter content here
+  'Units and Measurements': {
+    title: 'Units and Measurements',
+    description: 'Comprehensive study materials on units, measurements, and related concepts in physics.',
+    resources: [
+      {
+        title: 'SI Units and Fundamental Quantities',
+        description: 'Understanding basic SI units and fundamental physical quantities',
+        driveLink: 'https://drive.google.com/placeholder-3',
+        image: '/path-to-image',
+      },
+      {
+        title: 'Error Analysis and Measurements',
+        description: 'Learn about types of errors and measurement techniques',
+        driveLink: 'https://drive.google.com/placeholder-4',
+        image: '/path-to-image',
+      },
+    ],
+  },
+  'Basic Organic Chemistry': {
+    title: 'Introduction to Organic Chemistry',
+    description: 'Fundamental concepts of organic chemistry including nomenclature, basic reactions, and molecular structures.',
+    resources: [
+      {
+        title: 'Organic Compounds Classification',
+        description: 'Learn about different types of organic compounds',
+        driveLink: 'https://drive.google.com/placeholder-5',
+        image: '/path-to-image',
+      },
+      {
+        title: 'IUPAC Nomenclature',
+        description: 'Rules and examples of naming organic compounds',
+        driveLink: 'https://drive.google.com/placeholder-6',
+        image: '/path-to-image',
+      },
+    ],
+  },
 };
 
 const ResourcesPage = () => {
-  const [openSubject, setOpenSubject] = useState('');
-  const [selectedChapter, setSelectedChapter] = useState(null);
+  // Initialize with Class 12 Physics Electrostatics
+  const [selectedClass, setSelectedClass] = useState(12);
+  const [selectedSubject, setSelectedSubject] = useState('Physics');
+  const [selectedPart, setSelectedPart] = useState('Electrostatics');
+  const [selectedChapter, setSelectedChapter] = useState(resourceContent['Electric Charges']);
   const [mobileOpen, setMobileOpen] = useState(false);
   
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  const handleSubjectClick = (subject) => {
-    setOpenSubject(openSubject === subject ? '' : subject);
+  const handleClassChange = (classNum) => {
+    setSelectedClass(classNum);
+    setSelectedSubject(null);
+    setSelectedPart(null);
+    setSelectedChapter(null);
+  };
+
+  const handleSubjectChange = (subject) => {
+    setSelectedSubject(subject);
+    setSelectedPart(null);
+    setSelectedChapter(null);
+  };
+
+  const handlePartChange = (part) => {
+    setSelectedPart(part);
+    setSelectedChapter(null);
   };
 
   const handleChapterClick = (chapter) => {
@@ -68,41 +157,82 @@ const ResourcesPage = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const SubjectsList = () => (
-    <Box sx={{ width: { xs: 240, md: '100%' } }}>
-      <Typography variant="h6" gutterBottom sx={{ p: 2 }}>
-        Subjects
-      </Typography>
-      <List component="nav">
-        {Object.entries(subjects).map(([subject, chapters]) => (
-          <div key={subject}>
-            <ListItemButton onClick={() => handleSubjectClick(subject)}>
-              <ListItemText primary={subject} />
-              {openSubject === subject ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Collapse in={openSubject === subject} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                {chapters.map((chapter) => (
-                  <ListItemButton
-                    key={chapter}
-                    sx={{ pl: 4 }}
-                    onClick={() => handleChapterClick(chapter)}
-                  >
-                    <ListItemText 
-                      primary={chapter}
-                      primaryTypographyProps={{
-                        style: {
-                          fontSize: isMobile ? '0.9rem' : '1rem',
-                        }
-                      }}
-                    />
-                  </ListItemButton>
-                ))}
-              </List>
-            </Collapse>
-          </div>
-        ))}
-      </List>
+  const NavigationPanel = () => (
+    <Box sx={{ width: { xs: 240, md: '100%' }, p: 2 }}>
+      <FormControl fullWidth sx={{ mb: 2 }}>
+        <InputLabel>Select Class</InputLabel>
+        <Select
+          value={selectedClass || ''}
+          label="Select Class"
+          onChange={(e) => handleClassChange(e.target.value)}
+        >
+          <MenuItem value={11}>Class 11</MenuItem>
+          <MenuItem value={12}>Class 12</MenuItem>
+        </Select>
+      </FormControl>
+
+      {selectedClass && (
+        <FormControl fullWidth sx={{ mb: 2 }}>
+          <InputLabel>Select Subject</InputLabel>
+          <Select
+            value={selectedSubject || ''}
+            label="Select Subject"
+            onChange={(e) => handleSubjectChange(e.target.value)}
+          >
+            {Object.keys(classData[selectedClass]).map((subject) => (
+              <MenuItem key={subject} value={subject}>
+                {subject}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      )}
+
+      {selectedSubject && (
+        <Box>
+          <List component="nav">
+            {Object.entries(classData[selectedClass][selectedSubject]).map(([part, chapters]) => (
+              <div key={part}>
+                <ListItemButton
+                  onClick={() => handlePartChange(part)}
+                  selected={selectedPart === part}
+                >
+                  <ListItemText 
+                    primary={part}
+                    primaryTypographyProps={{
+                      style: {
+                        fontSize: isMobile ? '0.9rem' : '1rem',
+                      }
+                    }}
+                  />
+                  {selectedPart === part ? <ExpandLess /> : <ExpandMore />}
+                </ListItemButton>
+                <Collapse in={selectedPart === part} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    {chapters.map((chapter) => (
+                      <ListItemButton
+                        key={chapter}
+                        sx={{ pl: 4 }}
+                        onClick={() => handleChapterClick(chapter)}
+                        selected={selectedChapter?.title === chapter}
+                      >
+                        <ListItemText 
+                          primary={chapter}
+                          primaryTypographyProps={{
+                            style: {
+                              fontSize: isMobile ? '0.85rem' : '0.9rem',
+                            }
+                          }}
+                        />
+                      </ListItemButton>
+                    ))}
+                  </List>
+                </Collapse>
+              </div>
+            ))}
+          </List>
+        </Box>
+      )}
     </Box>
   );
 
@@ -123,31 +253,16 @@ const ResourcesPage = () => {
 
       <Grid container spacing={2}>
         {/* Subjects and Chapters List */}
-        {isMobile ? (
-          <Drawer
-            variant="temporary"
-            anchor="left"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-            sx={{
-              '& .MuiDrawer-paper': { 
-                boxSizing: 'border-box',
-                width: 240
-              },
-            }}
-          >
-            <SubjectsList />
-          </Drawer>
-        ) : (
-          <Grid item md={3}>
-            <Paper elevation={2} sx={{ height: '100%' }}>
-              <SubjectsList />
-            </Paper>
-          </Grid>
-        )}
+        <Grid item xs={12} md={3}>
+          <Paper elevation={2} sx={{ height: '100%', display: { xs: 'none', md: 'block' } }}>
+            <NavigationPanel />
+          </Paper>
+        </Grid>
+        
+        {/* Mobile Navigation Panel */}
+        <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+          <NavigationPanel />
+        </Box>
 
         {/* Resource Content */}
         <Grid item xs={12} md={9}>
