@@ -15,6 +15,7 @@ import {
   ListItemButton,
   ListItemText,
   Collapse,
+  IconButton,
 } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
@@ -124,6 +125,7 @@ const ResourcesPage = () => {
   const [selectedPart, setSelectedPart] = useState('Electrostatics');
   const [selectedChapter, setSelectedChapter] = useState(resourceContent['Electric Charges']);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openSections, setOpenSections] = useState({});  // Track open/closed state of sections
   
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -133,17 +135,23 @@ const ResourcesPage = () => {
     setSelectedSubject(null);
     setSelectedPart(null);
     setSelectedChapter(null);
+    setOpenSections({});  // Reset open sections when class changes
   };
 
   const handleSubjectChange = (subject) => {
     setSelectedSubject(subject);
     setSelectedPart(null);
     setSelectedChapter(null);
+    setOpenSections({});  // Reset open sections when subject changes
   };
 
   const handlePartChange = (part) => {
+    // Toggle the open state of the clicked section
+    setOpenSections(prev => ({
+      ...prev,
+      [part]: !prev[part]
+    }));
     setSelectedPart(part);
-    setSelectedChapter(null);
   };
 
   const handleChapterClick = (chapter) => {
@@ -197,33 +205,19 @@ const ResourcesPage = () => {
                   onClick={() => handlePartChange(part)}
                   selected={selectedPart === part}
                 >
-                  <ListItemText 
-                    primary={part}
-                    primaryTypographyProps={{
-                      style: {
-                        fontSize: isMobile ? '0.9rem' : '1rem',
-                      }
-                    }}
-                  />
-                  {selectedPart === part ? <ExpandLess /> : <ExpandMore />}
+                  <ListItemText primary={part} />
+                  {openSections[part] ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
-                <Collapse in={selectedPart === part} timeout="auto" unmountOnExit>
+                <Collapse in={openSections[part]} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     {chapters.map((chapter) => (
                       <ListItemButton
                         key={chapter}
-                        sx={{ pl: 4 }}
                         onClick={() => handleChapterClick(chapter)}
-                        selected={selectedChapter?.title === chapter}
+                        selected={selectedChapter?.title === resourceContent[chapter]?.title}
+                        sx={{ pl: 4 }}
                       >
-                        <ListItemText 
-                          primary={chapter}
-                          primaryTypographyProps={{
-                            style: {
-                              fontSize: isMobile ? '0.85rem' : '0.9rem',
-                            }
-                          }}
-                        />
+                        <ListItemText primary={chapter} />
                       </ListItemButton>
                     ))}
                   </List>
