@@ -50,8 +50,8 @@ const Navbar = () => {
     <AppBar position="sticky">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
-            Logo
+          <Link to="/" style={{ color: 'white', textDecoration: 'none', fontWeight: 'bold' }}>
+            Edvora
           </Link>
         </Typography>
         

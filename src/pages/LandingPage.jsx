@@ -30,7 +30,37 @@ const LandingPage = () => {
                 }
               }}
             >
-              Welcome to EduResource
+              Welcome to Edvora
+            </Typography>
+            <Typography 
+              variant={isMobile ? 'body1' : 'h5'} 
+              color="text.secondary" 
+              paragraph
+              sx={{ 
+                fontSize: { 
+                  xs: '1rem', 
+                  sm: '1.1rem', 
+                  md: '1.25rem' 
+                },
+                mb: 2
+              }}
+            >
+              Edvora is a free learning platform dedicated to empowering students from Class 1 to Class 12 with quality educational content — at zero cost.
+            </Typography>
+            <Typography 
+              variant={isMobile ? 'body1' : 'h5'} 
+              color="text.secondary" 
+              paragraph
+              sx={{ 
+                fontSize: { 
+                  xs: '1rem', 
+                  sm: '1.1rem', 
+                  md: '1.25rem' 
+                },
+                mb: 2
+              }}
+            >
+              Our mission is to break down the barriers to learning by offering accessible, easy-to-understand study materials, notes, quizzes, and concept explanations for every major subject.
             </Typography>
             <Typography 
               variant={isMobile ? 'body1' : 'h5'} 
@@ -44,7 +74,7 @@ const LandingPage = () => {
                 }
               }}
             >
-              Your one-stop destination for quality educational resources. Access comprehensive study materials, expert guidance, and interactive learning tools.
+              Whether you're preparing for your school exams, board exams, or just want to strengthen your understanding, Edvora is your one-stop digital companion. Designed by educators and simplified for students, we're committed to making education free, fun, and future-ready for every learner.
             </Typography>
             <Button
               component={Link}
