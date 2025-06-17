@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import LandingPage from './pages/LandingPage';
 import ResourcesPage from './pages/ResourcesPage';
@@ -25,6 +26,7 @@ function App() {
         <Route path="/resources" element={<ResourcesPage />} />
         {/* Additional routes can be added here */}
       </Routes>
+      <Analytics />
     </ThemeProvider>
   );
 }
