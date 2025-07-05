@@ -16,6 +16,7 @@ import {
   ListItemText,
   Collapse,
   IconButton,
+  Drawer,
 } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
@@ -242,21 +243,29 @@ const ResourcesPage = () => {
           >
             <MenuIcon />
           </IconButton>
+          <Drawer
+            anchor="left"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true,
+            }}
+            sx={{
+              '& .MuiDrawer-paper': { width: 260 },
+            }}
+          >
+            <NavigationPanel />
+          </Drawer>
         </Box>
       )}
 
       <Grid container spacing={2}>
         {/* Subjects and Chapters List */}
-        <Grid item xs={12} md={3}>
-          <Paper elevation={2} sx={{ height: '100%', display: { xs: 'none', md: 'block' } }}>
+        <Grid item xs={12} md={3} sx={{ display: { xs: 'none', md: 'block' } }}>
+          <Paper elevation={2} sx={{ height: '100%' }}>
             <NavigationPanel />
           </Paper>
         </Grid>
-        
-        {/* Mobile Navigation Panel */}
-        <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-          <NavigationPanel />
-        </Box>
 
         {/* Resource Content */}
         <Grid item xs={12} md={9}>
