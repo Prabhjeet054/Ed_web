@@ -13,10 +13,10 @@ const LandingPage = () => {
         spacing={{ xs: 2, md: 4 }} 
         sx={{ 
           mt: { xs: 2, md: 4 },
-          flexDirection: { xs: 'column-reverse', md: 'row' }
+          flexDirection: { xs: 'column', md: 'row' } // Always column on mobile, row on desktop
         }}
       >
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6} order={{ xs: 1, md: 1 }}>
           <Box sx={{ p: { xs: 2, md: 4 } }}>
             <Typography 
               variant={isMobile ? 'h4' : 'h3'} 
@@ -90,7 +90,7 @@ const LandingPage = () => {
             </Button>
           </Box>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6} order={{ xs: 2, md: 2 }}>
           <Box
             sx={{
               height: { xs: 250, sm: 300, md: 400 },
