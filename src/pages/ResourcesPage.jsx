@@ -21,6 +21,7 @@ import {
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import MenuIcon from '@mui/icons-material/Menu';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const classData = {
   11: {
@@ -198,35 +199,58 @@ const ResourcesPage = () => {
       )}
 
       {selectedSubject && (
-        <Box>
-          <List component="nav">
-            {Object.entries(classData[selectedClass][selectedSubject]).map(([part, chapters]) => (
-              <div key={part}>
-                <ListItemButton
-                  onClick={() => handlePartChange(part)}
-                  selected={selectedPart === part}
-                >
-                  <ListItemText primary={part} />
-                  {openSections[part] ? <ExpandLess /> : <ExpandMore />}
-                </ListItemButton>
-                <Collapse in={openSections[part]} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    {chapters.map((chapter) => (
-                      <ListItemButton
-                        key={chapter}
-                        onClick={() => handleChapterClick(chapter)}
-                        selected={selectedChapter?.title === resourceContent[chapter]?.title}
-                        sx={{ pl: 4 }}
-                      >
-                        <ListItemText primary={chapter} />
-                      </ListItemButton>
-                    ))}
-                  </List>
-                </Collapse>
-              </div>
-            ))}
-          </List>
-        </Box>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selectedSubject}
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -24 }}
+            transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+          >
+            <Box>
+              <List component="nav">
+                {Object.entries(classData[selectedClass][selectedSubject]).map(([part, chapters]) => (
+                  <div key={part}>
+                    <ListItemButton
+                      onClick={() => handlePartChange(part)}
+                      selected={selectedPart === part}
+                    >
+                      <ListItemText primary={part} />
+                      {openSections[part] ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton>
+                    <AnimatePresence initial={false}>
+                      {openSections[part] && (
+                        <motion.div
+                          key="dropdown"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                          style={{ overflow: 'hidden' }}
+                        >
+                          <Collapse in={openSections[part]} timeout={0} unmountOnExit>
+                            <List component="div" disablePadding>
+                              {chapters.map((chapter) => (
+                                <ListItemButton
+                                  key={chapter}
+                                  onClick={() => handleChapterClick(chapter)}
+                                  selected={selectedChapter?.title === resourceContent[chapter]?.title}
+                                  sx={{ pl: 4 }}
+                                >
+                                  <ListItemText primary={chapter} />
+                                </ListItemButton>
+                              ))}
+                            </List>
+                          </Collapse>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
+              </List>
+            </Box>
+          </motion.div>
+        </AnimatePresence>
       )}
     </Box>
   );
