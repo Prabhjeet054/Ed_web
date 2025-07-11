@@ -1,5 +1,82 @@
-import { Box, Button, Container, Grid, Typography, useTheme, useMediaQuery } from '@mui/material';
+import { Box, Button, Container, Grid, Typography, useTheme, useMediaQuery, Card, CardContent, Avatar } from '@mui/material';
 import { Link } from 'react-router-dom';
+
+const sampleReviews = [
+  {
+    name: 'Aarav Sharma',
+    date: 'May 24, 2024',
+    avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+    review: 'Edvora helped me ace my board exams! The notes and quizzes are super helpful and easy to understand.',
+  },
+  {
+    name: 'Priya Singh',
+    date: 'May 25, 2024',
+    avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
+    review: 'The resources are free and high quality. I love the simple explanations and the variety of subjects.',
+  },
+  {
+    name: 'Rahul Verma',
+    date: 'May 26, 2024',
+    avatar: 'https://randomuser.me/api/portraits/men/65.jpg',
+    review: 'I use Edvora every day for my studies. The platform is easy to use and the content is always up to date.',
+  },
+  {
+    name: 'Sneha Patel',
+    date: 'May 27, 2024',
+    avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
+    review: 'Great for revision before exams! The quizzes really test your understanding.',
+  },
+  {
+    name: 'Vikram Joshi',
+    date: 'May 28, 2024',
+    avatar: 'https://randomuser.me/api/portraits/men/77.jpg',
+    review: 'Highly recommended for all students. The best part is everything is free!',
+  },
+];
+
+const ReviewCards = () => (
+  <Box
+    sx={{
+      display: 'flex',
+      overflowX: 'auto',
+      gap: 3,
+      py: 3,
+      px: 1,
+      scrollbarWidth: 'thin',
+      '&::-webkit-scrollbar': { height: 8 },
+      '&::-webkit-scrollbar-thumb': { background: '#e0e0e0', borderRadius: 4 },
+    }}
+  >
+    {sampleReviews.map((review, idx) => (
+      <Card
+        key={idx}
+        sx={{
+          minWidth: 280,
+          maxWidth: 320,
+          backgroundColor: 'grey.100',
+          borderRadius: 3,
+          boxShadow: 2,
+          flex: '0 0 auto',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <CardContent>
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+            <Avatar src={review.avatar} alt={review.name} sx={{ mr: 2 }} />
+            <Box>
+              <Typography variant="subtitle1" fontWeight={600}>{review.name}</Typography>
+              <Typography variant="caption" color="text.secondary">{review.date}</Typography>
+            </Box>
+          </Box>
+          <Typography variant="body2" color="text.primary">
+            "{review.review}"
+          </Typography>
+        </CardContent>
+      </Card>
+    ))}
+  </Box>
+);
 
 const LandingPage = () => {
   const theme = useTheme();
@@ -114,7 +191,11 @@ const LandingPage = () => {
         sx={{ 
           my: { xs: 4, md: 8 },
           px: { xs: 2, md: 0 },
-          scrollMarginTop: '64px' // height of the AppBar
+          scrollMarginTop: '64px',
+          position: 'relative',
+          minHeight: 250,
+          backgroundColor: '#fff',
+          borderRadius: 2,
         }}
       >
         <Typography 
@@ -122,22 +203,11 @@ const LandingPage = () => {
           component="h2" 
           gutterBottom 
           align="center"
+          sx={{ position: 'relative', zIndex: 10 }}
         >
           Reviews
         </Typography>
-        <Box
-          sx={{
-            minHeight: { xs: 150, sm: 200 },
-            backgroundColor: 'grey.100',
-            p: { xs: 2, md: 3 },
-            borderRadius: 2,
-            mb: 4,
-          }}
-        >
-          <Typography variant={isMobile ? 'body2' : 'body1'}>
-            Review Section Content
-          </Typography>
-        </Box>
+        <ReviewCards />
       </Box>
 
       <Box 
@@ -147,7 +217,7 @@ const LandingPage = () => {
           p: { xs: 2, md: 4 }, 
           backgroundColor: 'grey.100', 
           borderRadius: 2,
-          scrollMarginTop: '64px' // height of the AppBar
+          scrollMarginTop: '64px'
         }}
       >
         <Typography 
