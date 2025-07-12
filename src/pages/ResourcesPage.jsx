@@ -121,11 +121,11 @@ const resourceContent = {
 };
 
 const ResourcesPage = () => {
-  // Initialize with Class 12 Physics Electrostatics
+  // Initialize with Class 12 Chemistry Electrostatics
   const [selectedClass, setSelectedClass] = useState(12);
-  const [selectedSubject, setSelectedSubject] = useState('Physics');
-  const [selectedPart, setSelectedPart] = useState('Electrostatics');
-  const [selectedChapter, setSelectedChapter] = useState(resourceContent['Electric Charges']);
+  const [selectedSubject, setSelectedSubject] = useState('Chemistry');
+  const [selectedPart, setSelectedPart] = useState('Physical Chemistry');
+  const [selectedChapter, setSelectedChapter] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSections, setOpenSections] = useState({});  // Track open/closed state of sections
   
