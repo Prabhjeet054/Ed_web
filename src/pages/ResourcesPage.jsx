@@ -17,6 +17,7 @@ import {
   Collapse,
   IconButton,
   Drawer,
+  Skeleton
 } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
@@ -117,7 +118,7 @@ const resourceContent = {
         image: '/path-to-image',
       },
     ],
-  },
+  }
 };
 
 const ResourcesPage = () => {
@@ -255,6 +256,55 @@ const ResourcesPage = () => {
     </Box>
   );
 
+  const getChapterSkeleton = (chapterName) => (
+    <Box sx={{ mb: 4 }}>
+      <Skeleton
+        variant="rectangular"
+        width="100%"
+        height={180}
+        sx={{ borderRadius: 2, mb: 1 }}
+      />
+      <Typography
+        variant="subtitle1"
+        align="center"
+        sx={{ fontWeight: 500, mb: 2 }}
+      >
+        {chapterName}
+      </Typography>
+    </Box>
+  );
+
+  const getSectionLayout = (part, chapters) => (
+    <Box sx={{ mb: 4 }}>
+      <Typography
+        variant="h5"
+        sx={{
+          fontWeight: 600,
+          mb: 2,
+          mt: 2,
+          textTransform: 'capitalize',
+        }}
+      >
+        {part}
+      </Typography>
+      <Grid container spacing={2}>
+        {chapters.map((chapterName) => (
+          <Grid item xs={12} sm={6} md={6} key={chapterName}>
+            {getChapterSkeleton(chapterName)}
+            <Typography
+              variant="body2"
+              align="center"
+              color="text.secondary"
+              sx={{ mb: 2 }}
+            >
+              {chapterName}
+            </Typography>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
+
   return (
     <Container maxWidth="lg" sx={{ mt: { xs: 2, md: 4 } }}>
       {isMobile && (
@@ -318,19 +368,19 @@ const ResourcesPage = () => {
                   {selectedChapter.resources.map((resource, index) => (
                     <Grid item xs={12} sm={6} md={6} key={index}>
                       <Box sx={{ mb: 4 }}>
-                        <Box
-                          sx={{
-                            height: { xs: 150, sm: 200 },
-                            backgroundColor: 'grey.200',
-                            mb: 2,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            borderRadius: 1,
-                          }}
+                        <Skeleton
+                          variant="rectangular"
+                          width="100%"
+                          height={180}
+                          sx={{ borderRadius: 2, mb: 1 }}
+                        />
+                        <Typography
+                          variant="subtitle1"
+                          align="center"
+                          sx={{ fontWeight: 500, mb: 2 }}
                         >
-                          <Typography>Resource Image</Typography>
-                        </Box>
+                          {selectedChapter.title}
+                        </Typography>
                         <Typography 
                           variant="h6"
                           sx={{ 
@@ -360,6 +410,7 @@ const ResourcesPage = () => {
                 </Grid>
               </Box>
             ) : (
+              // Show nothing by default if no chapter is selected
               <Box
                 sx={{
                   height: { xs: '50vh', md: '70vh' },
@@ -368,13 +419,7 @@ const ResourcesPage = () => {
                   justifyContent: 'center',
                 }}
               >
-                <Typography 
-                  variant={isMobile ? 'h6' : 'h5'} 
-                  color="text.secondary"
-                  align="center"
-                >
-                  {isMobile ? 'Tap the menu to select a chapter' : 'Select a chapter to view resources'}
-                </Typography>
+                {/* Optionally, you can show a hint here, or leave it blank for a clean look */}
               </Box>
             )}
           </Paper>
