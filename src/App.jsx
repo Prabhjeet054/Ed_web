@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import LandingPage from './pages/LandingPage';
 import ResourcesPage from './pages/ResourcesPage';
 import { AnimatePresence, motion } from 'framer-motion';
+import Footer from './components/Footer';
 
 const theme = createTheme({
   palette: {
@@ -56,6 +57,7 @@ function App() {
         </Routes>
       </AnimatePresence>
       <Analytics />
+      <Footer />
     </ThemeProvider>
   );
 }
