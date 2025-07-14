@@ -209,32 +209,6 @@ const LandingPage = () => {
         </Typography>
         <ReviewCards />
       </Box>
-
-      <Box 
-        id="contact"
-        sx={{ 
-          my: { xs: 4, md: 8 }, 
-          p: { xs: 2, md: 4 }, 
-          backgroundColor: 'grey.100', 
-          borderRadius: 2,
-          scrollMarginTop: '64px'
-        }}
-      >
-        <Typography 
-          variant={isMobile ? 'h5' : 'h4'} 
-          component="h2" 
-          gutterBottom 
-          align="center"
-        >
-          Contact Information
-        </Typography>
-        <Typography 
-          align="center"
-          variant={isMobile ? 'body2' : 'body1'}
-        >
-          Contact information and other details will be displayed here.
-        </Typography>
-      </Box>
     </Container>
   );
 };
