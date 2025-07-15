@@ -81,6 +81,12 @@ const resourceContent = {
         driveLink: 'https://drive.google.com/placeholder-2',
         image: '/path-to-image',
       },
+      {
+        title: 'Electric Field Lines',
+        description: 'Visualizing electric field lines and their properties',
+        driveLink: 'https://drive.google.com/placeholder-7',
+        image: '/path-to-image',
+      },
     ],
   },
   'Units and Measurements': {
@@ -97,6 +103,12 @@ const resourceContent = {
         title: 'Error Analysis and Measurements',
         description: 'Learn about types of errors and measurement techniques',
         driveLink: 'https://drive.google.com/placeholder-4',
+        image: '/path-to-image',
+      },
+      {
+        title: 'Significant Figures',
+        description: 'Rules and examples for significant figures in measurements',
+        driveLink: 'https://drive.google.com/placeholder-8',
         image: '/path-to-image',
       },
     ],
@@ -117,8 +129,62 @@ const resourceContent = {
         driveLink: 'https://drive.google.com/placeholder-6',
         image: '/path-to-image',
       },
+      {
+        title: 'Isomerism in Organic Chemistry',
+        description: 'Introduction to structural and stereoisomerism',
+        driveLink: 'https://drive.google.com/placeholder-9',
+        image: '/path-to-image',
+      },
     ],
-  }
+  },
+  'Solutions': {
+    title: 'Solutions',
+    description: 'Detailed notes and resources on types of solutions, concentration terms, and colligative properties.',
+    resources: [
+      {
+        title: 'Types of Solutions',
+        description: 'Classification and examples of different types of solutions',
+        driveLink: 'https://drive.google.com/placeholder-10',
+        image: '/path-to-image',
+      },
+      {
+        title: 'Concentration Terms',
+        description: 'Molarity, Molality, Normality, and other concentration units',
+        driveLink: 'https://drive.google.com/placeholder-11',
+        image: '/path-to-image',
+      },
+      {
+        title: 'Colligative Properties',
+        description: 'Study of properties depending on the number of solute particles',
+        driveLink: 'https://drive.google.com/placeholder-12',
+        image: '/path-to-image',
+      },
+    ],
+  },
+  'Matrices': {
+    title: 'Matrices',
+    description: 'Comprehensive resources on matrices, operations, and applications in mathematics.',
+    resources: [
+      {
+        title: 'Matrix Basics',
+        description: 'Introduction to matrices and types of matrices',
+        driveLink: 'https://drive.google.com/placeholder-13',
+        image: '/path-to-image',
+      },
+      {
+        title: 'Matrix Operations',
+        description: 'Addition, subtraction, and multiplication of matrices',
+        driveLink: 'https://drive.google.com/placeholder-14',
+        image: '/path-to-image',
+      },
+      {
+        title: 'Determinants and Inverse',
+        description: 'Finding determinants and inverse of matrices',
+        driveLink: 'https://drive.google.com/placeholder-15',
+        image: '/path-to-image',
+      },
+    ],
+  },
 };
 
 const ResourcesPage = () => {
