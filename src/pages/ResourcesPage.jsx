@@ -23,6 +23,7 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import MenuIcon from '@mui/icons-material/Menu';
 import { AnimatePresence, motion } from 'framer-motion';
+import Footer from '../components/Footer';
 
 const classData = {
   11: {
@@ -372,143 +373,156 @@ const ResourcesPage = () => {
   );
 
   return (
-    <Container maxWidth="lg" sx={{ mt: { xs: 2, md: 4 } }}>
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        {isMobile && (
-          <Box sx={{ mb: 2 }}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Drawer
-              anchor="left"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-              ModalProps={{
-                keepMounted: true,
-              }}
-              sx={{
-                '& .MuiDrawer-paper': { width: 260 },
-              }}
-            >
-              <NavigationPanel />
-            </Drawer>
-          </Box>
-        )}
+    <Box sx={{ minHeight: '100vh', position: 'relative', pb: { xs: 10, md: 12 } }}>
+      <Container maxWidth="lg" sx={{ mt: { xs: 2, md: 4 } }}>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {isMobile && (
+            <Box sx={{ mb: 2 }}>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Drawer
+                anchor="left"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                ModalProps={{
+                  keepMounted: true,
+                }}
+                sx={{
+                  '& .MuiDrawer-paper': { width: 260 },
+                }}
+              >
+                <NavigationPanel />
+              </Drawer>
+            </Box>
+          )}
 
-        <Grid container spacing={2}>
-          {/* Subjects and Chapters List */}
-          <Grid item xs={12} md={3} sx={{ display: { xs: 'none', md: 'block' } }}>
-            <Paper elevation={2} sx={{ height: '100%' }}>
-              <NavigationPanel />
-            </Paper>
-          </Grid>
+          <Grid container spacing={2}>
+            {/* Subjects and Chapters List */}
+            <Grid item xs={12} md={3} sx={{ display: { xs: 'none', md: 'block' } }}>
+              <Paper elevation={2} sx={{ height: '100%' }}>
+                <NavigationPanel />
+              </Paper>
+            </Grid>
 
-          {/* Resource Content */}
-          <Grid item xs={12} md={9}>
-            <Paper elevation={2} sx={{ p: { xs: 2, md: 3 } }}>
-              {selectedChapter ? (
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Box>
-                    <Typography 
-                      variant={isMobile ? 'h5' : 'h4'} 
-                      gutterBottom
-                      sx={{ 
-                        wordBreak: 'break-word',
-                        fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' }
-                      }}
-                    >
-                      {selectedChapter.title}
-                    </Typography>
-                    <Typography 
-                      paragraph
-                      sx={{ 
-                        fontSize: { xs: '0.875rem', sm: '1rem' }
-                      }}
-                    >
-                      {selectedChapter.description}
-                    </Typography>
-                    <Grid container spacing={2}>
-                      {selectedChapter.resources.map((resource, index) => (
-                        <Grid item xs={12} sm={6} md={6} key={index}>
-                          <Box sx={{ mb: 4 }}>
-                            <Skeleton
-                              variant="rectangular"
-                              width="100%"
-                              height={180}
-                              sx={{ borderRadius: 2, mb: 1 }}
-                            />
-                            <Typography
-                              variant="subtitle1"
-                              align="center"
-                              sx={{ fontWeight: 500, mb: 2 }}
-                            >
-                              {selectedChapter.title}
-                            </Typography>
-                            <Typography 
-                              variant="h6"
-                              sx={{ 
-                                fontSize: { xs: '1rem', sm: '1.25rem' },
-                                mb: 1
-                              }}
-                            >
-                              {resource.title}
-                            </Typography>
-                            <Typography
-                              component="a"
-                              href={resource.driveLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              sx={{ 
-                                textDecoration: 'none', 
-                                color: 'primary.main',
-                                fontSize: { xs: '0.875rem', sm: '1rem' },
-                                display: 'block'
-                              }}
-                            >
-                              Google Drive Link
-                            </Typography>
-                          </Box>
-                        </Grid>
-                      ))}
-                    </Grid>
-                  </Box>
-                </motion.div>
-              ) : (
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Box
-                    sx={{
-                      height: { xs: '50vh', md: '70vh' },
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
+            {/* Resource Content */}
+            <Grid item xs={12} md={9}>
+              <Paper elevation={2} sx={{ p: { xs: 2, md: 3 } }}>
+                {selectedChapter ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
                   >
-                    {/* Optionally, you can show a hint here, or leave it blank for a clean look */}
-                  </Box>
-                </motion.div>
-              )}
-            </Paper>
+                    <Box>
+                      <Typography 
+                        variant={isMobile ? 'h5' : 'h4'} 
+                        gutterBottom
+                        sx={{ 
+                          wordBreak: 'break-word',
+                          fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' }
+                        }}
+                      >
+                        {selectedChapter.title}
+                      </Typography>
+                      <Typography 
+                        paragraph
+                        sx={{ 
+                          fontSize: { xs: '0.875rem', sm: '1rem' }
+                        }}
+                      >
+                        {selectedChapter.description}
+                      </Typography>
+                      <Grid container spacing={2}>
+                        {selectedChapter.resources.map((resource, index) => (
+                          <Grid item xs={12} sm={6} md={6} key={index}>
+                            <Box sx={{ mb: 4 }}>
+                              <Skeleton
+                                variant="rectangular"
+                                width="100%"
+                                height={180}
+                                sx={{ borderRadius: 2, mb: 1 }}
+                              />
+                              <Typography
+                                variant="subtitle1"
+                                align="center"
+                                sx={{ fontWeight: 500, mb: 2 }}
+                              >
+                                {selectedChapter.title}
+                              </Typography>
+                              <Typography 
+                                variant="h6"
+                                sx={{ 
+                                  fontSize: { xs: '1rem', sm: '1.25rem' },
+                                  mb: 1
+                                }}
+                              >
+                                {resource.title}
+                              </Typography>
+                              <Typography
+                                component="a"
+                                href={resource.driveLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                sx={{ 
+                                  textDecoration: 'none', 
+                                  color: 'primary.main',
+                                  fontSize: { xs: '0.875rem', sm: '1rem' },
+                                  display: 'block'
+                                }}
+                              >
+                                Google Drive Link
+                              </Typography>
+                            </Box>
+                          </Grid>
+                        ))}
+                      </Grid>
+                    </Box>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <Box
+                      sx={{
+                        height: { xs: '50vh', md: '70vh' },
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {/* Optionally, you can show a hint here, or leave it blank for a clean look */}
+                    </Box>
+                  </motion.div>
+                )}
+              </Paper>
+            </Grid>
           </Grid>
-        </Grid>
-      </motion.div>
-    </Container>
+        </motion.div>
+      </Container>
+      <Box
+        sx={{
+          position: 'fixed',
+          left: 0,
+          bottom: 0,
+          width: '100%',
+          zIndex: 1200,
+        }}
+      >
+        <Footer />
+      </Box>
+    </Box>
   );
 };
 
