@@ -28,39 +28,148 @@ import Footer from '../components/Footer';
 const classData = {
   11: {
     Physics: {
-      'Physical World and Measurement': ['Physics and Mathematics', 'Units and Measurements'],
-      'Kinematics': ['Motion in a Straight Line', 'Motion in a Plane'],
-      'Laws of Motion': ['Newton\'s Laws', 'Friction'],
-      'Work, Energy and Power': ['Work', 'Energy', 'Power', 'Collisions'],
-      'Motion of System of Particles': ['Center of Mass', 'Momentum', 'Rigid Body Dynamics']
+      'Physical World and Measurement': [
+        'Physics and Mathematics',
+        'Units and Measurements',
+        'Physical Quantities',
+        'Measurement Techniques'
+      ],
+      'Kinematics': [
+        'Motion in a Straight Line',
+        'Motion in a Plane',
+        'Projectile Motion',
+        'Relative Velocity'
+      ],
+      'Laws of Motion': [
+        'Newton\'s Laws',
+        'Friction',
+        'Free Body Diagrams',
+        'Applications of Laws of Motion'
+      ],
+      'Work, Energy and Power': [
+        'Work',
+        'Energy',
+        'Power',
+        'Collisions',
+        'Conservation of Energy'
+      ],
+      'Motion of System of Particles': [
+        'Center of Mass',
+        'Momentum',
+        'Rigid Body Dynamics',
+        'Angular Momentum'
+      ]
     },
     Chemistry: {
-      'Physical Chemistry': ['Some Basic Concepts', 'States of Matter', 'Atomic Structure'],
-      'Organic Chemistry': ['Basic Organic Chemistry', 'Hydrocarbons', 'Environmental Chemistry'],
-      'Inorganic Chemistry': ['Classification of Elements', 'Chemical Bonding', 'Redox Reactions']
+      'Physical Chemistry': [
+        'Some Basic Concepts',
+        'States of Matter',
+        'Atomic Structure',
+        'Thermodynamics',
+        'Chemical Equilibrium'
+      ],
+      'Organic Chemistry': [
+        'Basic Organic Chemistry',
+        'Hydrocarbons',
+        'Environmental Chemistry',
+        'Isomerism',
+        'Reaction Mechanisms'
+      ],
+      'Inorganic Chemistry': [
+        'Classification of Elements',
+        'Chemical Bonding',
+        'Redox Reactions',
+        'Periodic Table',
+        'Coordination Compounds'
+      ]
     },
     Mathematics: {
-      'Sets and Functions': ['Sets', 'Relations and Functions', 'Trigonometric Functions'],
-      'Algebra': ['Complex Numbers', 'Linear Inequalities', 'Sequences and Series'],
-      'Coordinate Geometry': ['Straight Lines', 'Conic Sections', 'Introduction to 3D']
+      'Sets and Functions': [
+        'Sets',
+        'Relations and Functions',
+        'Trigonometric Functions',
+        'Inverse Trigonometric Functions'
+      ],
+      'Algebra': [
+        'Complex Numbers',
+        'Linear Inequalities',
+        'Sequences and Series',
+        'Binomial Theorem'
+      ],
+      'Coordinate Geometry': [
+        'Straight Lines',
+        'Conic Sections',
+        'Introduction to 3D',
+        'Distance Formula'
+      ]
     }
   },
   12: {
     Physics: {
-      'Electrostatics': ['Electric Charges', 'Electric Field', 'Electric Potential'],
-      'Current Electricity': ['Electric Current', 'Ohm\'s Law', 'Electrical Devices'],
-      'Magnetism': ['Magnetic Field', 'Electromagnetic Induction', 'AC Circuits'],
-      'Optics': ['Ray Optics', 'Wave Optics', 'Optical Instruments']
+      'Electrostatics': [
+        'Electric Charges',
+        'Electric Field',
+        'Electric Potential',
+        'Capacitance'
+      ],
+      'Current Electricity': [
+        'Electric Current',
+        'Ohm\'s Law',
+        'Electrical Devices',
+        'Kirchhoff\'s Laws'
+      ],
+      'Magnetism': [
+        'Magnetic Field',
+        'Electromagnetic Induction',
+        'AC Circuits',
+        'Magnetic Properties of Materials'
+      ],
+      'Optics': [
+        'Ray Optics',
+        'Wave Optics',
+        'Optical Instruments',
+        'Interference and Diffraction'
+      ]
     },
     Chemistry: {
-      'Physical Chemistry': ['Solutions', 'Electrochemistry', 'Chemical Kinetics'],
-      'Organic Chemistry': ['Alcohols and Ethers', 'Aldehydes and Ketones', 'Biomolecules'],
-      'Inorganic Chemistry': ['d and f Block', 'Coordination Compounds', 'Metallurgy']
+      'Physical Chemistry': [
+        'Solutions',
+        'Electrochemistry',
+        'Chemical Kinetics',
+        'Surface Chemistry'
+      ],
+      'Organic Chemistry': [
+        'Alcohols and Ethers',
+        'Aldehydes and Ketones',
+        'Biomolecules',
+        'Polymers'
+      ],
+      'Inorganic Chemistry': [
+        'd and f Block',
+        'Coordination Compounds',
+        'Metallurgy',
+        'Qualitative Analysis'
+      ]
     },
     Mathematics: {
-      'Calculus': ['Continuity and Differentiability', 'Applications of Derivatives', 'Integrals'],
-      'Algebra': ['Matrices', 'Determinants', 'Vector Algebra'],
-      'Probability': ['Probability Concepts', 'Random Variables', 'Bernoulli Trials']
+      'Calculus': [
+        'Continuity and Differentiability',
+        'Applications of Derivatives',
+        'Integrals',
+        'Differential Equations'
+      ],
+      'Algebra': [
+        'Matrices',
+        'Determinants',
+        'Vector Algebra',
+        'Complex Numbers'
+      ],
+      'Probability': [
+        'Probability Concepts',
+        'Random Variables',
+        'Bernoulli Trials',
+        'Probability Distributions'
+      ]
     }
   }
 };
