@@ -558,9 +558,7 @@ const ResourcesPage = () => {
   return (
     <Box sx={{ minHeight: '100vh', position: 'relative', pb: { xs: 10, md: 12 } }}>
       <Container maxWidth="lg" sx={{ mt: { xs: 2, md: 4 } }}>
-        <motion.div
-          {...fadeInUp}
-        >
+        <motion.div {...fadeInUp}>
           {isMobile && (
             <motion.div {...fadeIn}>
               <Box sx={{ mb: 2 }}>
@@ -599,109 +597,164 @@ const ResourcesPage = () => {
               </motion.div>
             </Grid>
 
-            {/* Resource Content */}
+            {/* Resource Content (right side) */}
             <Grid item xs={12} md={9}>
-              <motion.div {...fadeInUp}>
-                <Paper elevation={2} sx={{ p: { xs: 2, md: 3 } }}>
-                  {selectedChapter ? (
-                    <motion.div
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 30 }}
-                      transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-                    >
-                      <Box>
-                        <Typography 
-                          variant={isMobile ? 'h5' : 'h4'} 
-                          gutterBottom
-                          sx={{ 
-                            wordBreak: 'break-word',
-                            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' }
-                          }}
-                        >
-                          {selectedChapter.title}
-                        </Typography>
-                        <Typography 
-                          paragraph
-                          sx={{ 
-                            fontSize: { xs: '0.875rem', sm: '1rem' }
-                          }}
-                        >
-                          {selectedChapter.description}
-                        </Typography>
-                        <Grid container spacing={2}>
-                          {selectedChapter.resources.map((resource, index) => (
-                            <Grid item xs={12} sm={6} md={6} key={index}>
-                              <motion.div
-                                initial={{ opacity: 0, scale: 0.96 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5, delay: 0.1 * index }}
-                              >
-                                <Box sx={{ mb: 4 }}>
-                                  <Skeleton
-                                    variant="rectangular"
-                                    width="100%"
-                                    height={180}
-                                    sx={{ borderRadius: 2, mb: 1 }}
-                                  />
-                                  <Typography
-                                    variant="subtitle1"
-                                    align="center"
-                                    sx={{ fontWeight: 500, mb: 2 }}
-                                  >
-                                    {selectedChapter.title}
-                                  </Typography>
-                                  <Typography 
-                                    variant="h6"
-                                    sx={{ 
-                                      fontSize: { xs: '1rem', sm: '1.25rem' },
-                                      mb: 1
-                                    }}
-                                  >
-                                    {resource.title}
-                                  </Typography>
-                                  <Typography
-                                    component="a"
-                                    href={resource.driveLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    sx={{ 
-                                      textDecoration: 'none', 
-                                      color: 'primary.main',
-                                      fontSize: { xs: '0.875rem', sm: '1rem' },
-                                      display: 'block'
-                                    }}
-                                  >
-                                    Google Drive Link
-                                  </Typography>
-                                </Box>
-                              </motion.div>
-                            </Grid>
-                          ))}
-                        </Grid>
-                      </Box>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 30 }}
-                      transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-                    >
-                      <Box
-                        sx={{
-                          height: { xs: '50vh', md: '70vh' },
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                        }}
+              <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                <motion.div {...fadeInUp} style={{ flex: 1 }}>
+                  <Paper elevation={2} sx={{ p: { xs: 2, md: 3 }, height: '100%' }}>
+                    {selectedChapter ? (
+                      <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 30 }}
+                        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
                       >
-                        {/* Optionally, you can show a hint here, or leave it blank for a clean look */}
-                      </Box>
-                    </motion.div>
-                  )}
-                </Paper>
-              </motion.div>
+                        <Box>
+                          <Typography 
+                            variant={isMobile ? 'h5' : 'h4'} 
+                            gutterBottom
+                            sx={{ 
+                              wordBreak: 'break-word',
+                              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' }
+                            }}
+                          >
+                            {selectedChapter.title}
+                          </Typography>
+                          <Typography 
+                            paragraph
+                            sx={{ 
+                              fontSize: { xs: '0.875rem', sm: '1rem' }
+                            }}
+                          >
+                            {selectedChapter.description}
+                          </Typography>
+                          {/* Display first 3 resources in a row, rest below */}
+                          <Grid container spacing={2}>
+                            {selectedChapter.resources.slice(0, 3).map((resource, index) => (
+                              <Grid item xs={12} sm={6} md={4} key={index}>
+                                <motion.div
+                                  initial={{ opacity: 0, scale: 0.96 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{ duration: 0.5, delay: 0.1 * index }}
+                                >
+                                  <Box sx={{ mb: 4 }}>
+                                    <Skeleton
+                                      variant="rectangular"
+                                      width="100%"
+                                      height={180}
+                                      sx={{ borderRadius: 2, mb: 1 }}
+                                    />
+                                    <Typography
+                                      variant="subtitle1"
+                                      align="center"
+                                      sx={{ fontWeight: 500, mb: 2 }}
+                                    >
+                                      {selectedChapter.title}
+                                    </Typography>
+                                    <Typography 
+                                      variant="h6"
+                                      sx={{ 
+                                        fontSize: { xs: '1rem', sm: '1.25rem' },
+                                        mb: 1
+                                      }}
+                                    >
+                                      {resource.title}
+                                    </Typography>
+                                    <Typography
+                                      component="a"
+                                      href={resource.driveLink}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      sx={{ 
+                                        textDecoration: 'none', 
+                                        color: 'primary.main',
+                                        fontSize: { xs: '0.875rem', sm: '1rem' },
+                                        display: 'block'
+                                      }}
+                                    >
+                                      Google Drive Link
+                                    </Typography>
+                                  </Box>
+                                </motion.div>
+                              </Grid>
+                            ))}
+                          </Grid>
+                          {selectedChapter.resources.length > 3 && (
+                            <Grid container spacing={2} sx={{ mt: 0 }}>
+                              {selectedChapter.resources.slice(3).map((resource, index) => (
+                                <Grid item xs={12} sm={6} md={4} key={index + 3}>
+                                  <motion.div
+                                    initial={{ opacity: 0, scale: 0.96 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.5, delay: 0.1 * (index + 3) }}
+                                  >
+                                    <Box sx={{ mb: 4 }}>
+                                      <Skeleton
+                                        variant="rectangular"
+                                        width="100%"
+                                        height={180}
+                                        sx={{ borderRadius: 2, mb: 1 }}
+                                      />
+                                      <Typography
+                                        variant="subtitle1"
+                                        align="center"
+                                        sx={{ fontWeight: 500, mb: 2 }}
+                                      >
+                                        {selectedChapter.title}
+                                      </Typography>
+                                      <Typography 
+                                        variant="h6"
+                                        sx={{ 
+                                          fontSize: { xs: '1rem', sm: '1.25rem' },
+                                          mb: 1
+                                        }}
+                                      >
+                                        {resource.title}
+                                      </Typography>
+                                      <Typography
+                                        component="a"
+                                        href={resource.driveLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        sx={{ 
+                                          textDecoration: 'none', 
+                                          color: 'primary.main',
+                                          fontSize: { xs: '0.875rem', sm: '1rem' },
+                                          display: 'block'
+                                        }}
+                                      >
+                                        Google Drive Link
+                                      </Typography>
+                                    </Box>
+                                  </motion.div>
+                                </Grid>
+                              ))}
+                            </Grid>
+                          )}
+                        </Box>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 30 }}
+                        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                      >
+                        <Box
+                          sx={{
+                            height: { xs: '50vh', md: '70vh' },
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}
+                        >
+                          {/* Optionally, you can show a hint here, or leave it blank for a clean look */}
+                        </Box>
+                      </motion.div>
+                    )}
+                  </Paper>
+                </motion.div>
+              </Box>
             </Grid>
           </Grid>
         </motion.div>
