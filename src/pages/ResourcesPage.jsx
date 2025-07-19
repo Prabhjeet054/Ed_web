@@ -269,6 +269,18 @@ const resourceContent = {
         driveLink: 'https://drive.google.com/placeholder-12',
         image: '/path-to-image',
       },
+      {
+        title: 'Vapour Pressure of Solutions',
+        description: 'Raoult\'s Law and its applications in solutions',
+        driveLink: 'https://drive.google.com/placeholder-16',
+        image: '/path-to-image',
+      },
+      {
+        title: 'Abnormal Molar Masses',
+        description: 'Causes and calculations of abnormal molar masses in solutions',
+        driveLink: 'https://drive.google.com/placeholder-17',
+        image: '/path-to-image',
+      },
     ],
   },
   'Matrices': {
@@ -291,6 +303,54 @@ const resourceContent = {
         title: 'Determinants and Inverse',
         description: 'Finding determinants and inverse of matrices',
         driveLink: 'https://drive.google.com/placeholder-15',
+        image: '/path-to-image',
+      },
+    ],
+  },
+  'Alcohols and Ethers': {
+    title: 'Alcohols and Ethers',
+    description: 'Study the properties, reactions, and preparation of alcohols and ethers.',
+    resources: [
+      {
+        title: 'Preparation of Alcohols',
+        description: 'Methods of preparing alcohols from various sources',
+        driveLink: 'https://drive.google.com/placeholder-18',
+        image: '/path-to-image',
+      },
+      {
+        title: 'Properties of Alcohols',
+        description: 'Physical and chemical properties of alcohols',
+        driveLink: 'https://drive.google.com/placeholder-19',
+        image: '/path-to-image',
+      },
+      {
+        title: 'Ethers: Preparation and Properties',
+        description: 'Synthesis and characteristics of ethers',
+        driveLink: 'https://drive.google.com/placeholder-20',
+        image: '/path-to-image',
+      },
+    ],
+  },
+  'Continuity and Differentiability': {
+    title: 'Continuity and Differentiability',
+    description: 'Resources on continuity, differentiability, and their applications in calculus.',
+    resources: [
+      {
+        title: 'Continuity of Functions',
+        description: 'Definition and examples of continuous functions',
+        driveLink: 'https://drive.google.com/placeholder-21',
+        image: '/path-to-image',
+      },
+      {
+        title: 'Differentiability',
+        description: 'Concept and criteria for differentiability',
+        driveLink: 'https://drive.google.com/placeholder-22',
+        image: '/path-to-image',
+      },
+      {
+        title: 'Applications',
+        description: 'Applications of continuity and differentiability in real problems',
+        driveLink: 'https://drive.google.com/placeholder-23',
         image: '/path-to-image',
       },
     ],
