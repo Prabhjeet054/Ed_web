@@ -22,7 +22,6 @@ Edvora is a free learning platform dedicated to empowering students from Class 1
 - **Resources Page:**  
   - Select your class (11 or 12).
   - Choose a subject (Physics, Chemistry, Mathematics).
-  - Expand a topic to see chapters.
   - Click a chapter to view its resources, including notes and Google Drive links.
   - Animated transitions and skeleton loaders provide a smooth experience.
 - **Navigation:**  
